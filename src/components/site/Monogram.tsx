@@ -7,7 +7,7 @@ export function Monogram({ className }: { className?: string }) {
     visible: {
       pathLength: 1,
       opacity: 1,
-      transition: { duration: 1.6, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 1.6, ease: "easeOut" as const },
     },
   };
   return (

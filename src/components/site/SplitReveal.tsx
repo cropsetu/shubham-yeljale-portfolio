@@ -23,7 +23,7 @@ export function SplitReveal({
   const words = children.split(" ");
 
   if (reduce) {
-    const Static = as as keyof JSX.IntrinsicElements;
+    const Static = as as React.ElementType;
     return <Static className={className}>{children}</Static>;
   }
 
