@@ -1,26 +1,52 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { Work } from "@/components/site/Work";
+import { Services } from "@/components/site/Services";
+import { Process } from "@/components/site/Process";
+import { Testimonials } from "@/components/site/Testimonials";
+import { Contact } from "@/components/site/Contact";
+import { SmoothScroll } from "@/components/site/SmoothScroll";
+import { MagneticCursor } from "@/components/site/MagneticCursor";
+import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Shubham Yeljale — Software Developer · JahiratBazi" },
+      {
+        name: "description",
+        content:
+          "Software developer based in Pune, India. Crafting beautiful, performant web experiences for studios and founders.",
+      },
+      { property: "og:title", content: "Shubham Yeljale — Software Developer" },
+      {
+        property: "og:description",
+        content:
+          "Cinematic, fast, conversion-ready websites and web apps. Available for select projects in 2025–2026.",
+      },
+      { property: "og:type", content: "website" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <main className="relative bg-background text-foreground">
+      <SmoothScroll />
+      <MagneticCursor />
+      <div className="grain" aria-hidden />
+
+      <Hero />
+      <About />
+      <Work />
+      <Services />
+      <Process />
+      <Testimonials />
+      <Contact />
+
+      <Toaster position="bottom-center" theme="dark" />
+    </main>
+  );
 }
