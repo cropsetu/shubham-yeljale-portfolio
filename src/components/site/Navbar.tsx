@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 const links = [
   { href: "#services", label: "Services" },
   { href: "#process", label: "Process" },
-  { href: "#about", label: "Why Me" },
   { href: "#projects", label: "Portfolio" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -38,7 +39,7 @@ export function Navbar() {
             ◆ SHUBHAM
           </a>
 
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden md:flex items-center gap-5 lg:gap-6">
             {links.map((l) => (
               <a
                 key={l.href}

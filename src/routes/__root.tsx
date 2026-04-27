@@ -47,6 +47,9 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // warm up the screenshot CDN so portfolio thumbnails appear instantly
+      { rel: "preconnect", href: "https://image.thum.io", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://image.thum.io" },
     ],
   }),
   shellComponent: RootShell,

@@ -30,6 +30,8 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-gold: hsl(var(--gold));
+  --color-gold-soft: hsl(var(--gold-soft));
 
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
@@ -67,6 +69,10 @@
   --border: 250 40% 20%;
   --input: 250 40% 18%;
   --ring: 320 95% 55%;
+
+  /* Premium gold for pricing + accents */
+  --gold: 43 96% 56%;        /* #fbbf24 amber-400 */
+  --gold-soft: 38 92% 70%;   /* warmer cream-gold */
 
   --radius: 1rem;
 

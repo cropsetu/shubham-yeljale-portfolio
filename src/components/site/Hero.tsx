@@ -50,7 +50,7 @@ export function Hero() {
           className="absolute top-40 right-4 md:right-10 w-72 md:w-96 h-72 md:h-96 rounded-full mix-blend-screen blur-3xl opacity-40 animate-pulse-glow"
           style={{
             background:
-              "radial-gradient(circle, hsl(190 100% 55% / 0.50) 0%, transparent 70%)",
+              "radial-gradient(circle, hsl(43 96% 56% / 0.45) 0%, transparent 70%)",
             transform: "translate(calc(var(--mx, 0) * -0.015px), calc(var(--my, 0) * 0.015px))",
             transition: "transform 0.4s ease-out",
             animationDelay: "1.5s",
@@ -66,6 +66,51 @@ export function Hero() {
             animationDelay: "3s",
           }}
         />
+
+        {/* decorative SVG — floating sparkles & code brackets */}
+        <svg
+          aria-hidden
+          className="absolute top-32 left-8 hidden md:block opacity-40 animate-float"
+          width="48"
+          height="48"
+          viewBox="0 0 48 48"
+          fill="none"
+        >
+          <path
+            d="M16 12L8 24l8 12M32 12l8 12-8 12"
+            stroke="hsl(var(--gold))"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <svg
+          aria-hidden
+          className="absolute bottom-40 right-12 hidden md:block opacity-50 animate-float"
+          style={{ animationDelay: "2s" }}
+          width="36"
+          height="36"
+          viewBox="0 0 36 36"
+          fill="none"
+        >
+          <path
+            d="M18 2L21 15L34 18L21 21L18 34L15 21L2 18L15 15Z"
+            fill="hsl(var(--gold))"
+            fillOpacity="0.7"
+          />
+        </svg>
+        <svg
+          aria-hidden
+          className="absolute top-1/2 right-1/4 hidden lg:block opacity-30 animate-float"
+          style={{ animationDelay: "4s" }}
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <circle cx="12" cy="12" r="6" fill="hsl(190 100% 55%)" fillOpacity="0.6" />
+          <circle cx="12" cy="12" r="11" stroke="hsl(190 100% 55%)" strokeOpacity="0.4" />
+        </svg>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -76,17 +121,17 @@ export function Hero() {
           className="max-w-5xl mx-auto text-center"
         >
           {/* Trust badge */}
-          <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full glass border border-blue-400/20 text-blue-300 text-xs sm:text-sm font-medium mb-8 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full glass border border-amber-300/30 text-amber-100 text-xs sm:text-sm font-medium mb-8 backdrop-blur-sm shadow-[0_0_30px_rgba(251,191,36,0.15)]">
             <span className="relative flex items-center justify-center">
               <span className="absolute w-5 h-5 rounded-full bg-emerald-400/30 animate-ping" />
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
             </span>
-            <span>Trusted by 10+ Businesses Across India</span>
+            <span>10+ projects shipped · Pune-based, working worldwide</span>
             <span className="hidden sm:flex -space-x-1 ml-1">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star
                   key={i}
-                  className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400"
+                  className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
                 />
               ))}
             </span>
@@ -94,20 +139,26 @@ export function Hero() {
 
           {/* Headline */}
           <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05] tracking-tight">
-            We Build{" "}
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300 bg-clip-text text-transparent">
-              Websites &amp; Apps
+            Beautiful{" "}
+            <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
+              websites &amp; apps
             </span>
             <br />
-            That Grow Your Business
+            shipped in weeks, not months.
           </h1>
 
           {/* Subhead */}
           <p className="text-base sm:text-lg lg:text-xl text-foreground/75 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Custom websites, mobile apps and AI tools — idea to launch in under{" "}
-            <span className="text-blue-300 font-semibold">3 weeks</span>.
+            I&apos;m Shubham — a full-stack developer in Pune turning ideas into
+            production-ready{" "}
+            <span className="text-blue-300 font-semibold">websites</span>,{" "}
+            <span className="text-cyan-300 font-semibold">mobile apps</span> and{" "}
+            <span className="bg-gradient-to-r from-amber-300 to-yellow-400 bg-clip-text text-transparent font-semibold">
+              AI tools
+            </span>
+            .
             <br className="hidden sm:block" />
-            Free mockup in 48 hours. No upfront payment. Built by Shubham Yeljale, full-stack developer based in Pune.
+            Free mockup in 48 hours. Pay only when each milestone ships.
           </p>
 
           {/* Dual CTAs */}
