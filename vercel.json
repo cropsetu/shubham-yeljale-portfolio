@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run vercel-build",
+  "framework": null,
+  "installCommand": "npm install --no-audit --no-fund",
+  "trailingSlash": false
+}
