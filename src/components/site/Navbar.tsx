@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Journey" },
   { href: "#services", label: "Services" },
-  { href: "#projects", label: "Work" },
+  { href: "#process", label: "Process" },
+  { href: "#about", label: "Why Me" },
+  { href: "#projects", label: "Portfolio" },
   { href: "#contact", label: "Contact" },
 ];
 

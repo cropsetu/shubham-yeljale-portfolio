@@ -1,187 +1,172 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowDown, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Star,
+  Clock,
+  Zap,
+  CheckCircle2,
+  MessageCircle,
+} from "lucide-react";
 
-const codeSnippets = [
-  `// AI agent — autonomous coding\nconst agent = new LLM({ model: "gpt-4o" });\nawait agent.deploy({\n  task: "scale-to-zero",\n  region: "edge"\n});`,
-  `// React Server Component\nexport default async function Page() {\n  const data = await fetch(api);\n  return <Stream data={data} />;\n}`,
-  `# Train neural net\nimport torch.nn as nn\nclass Vision(nn.Module):\n    def forward(self, x):\n        return self.attn(x)`,
-  `// React Native screen\nexport function Home() {\n  return (\n    <View style={s.galaxy}>\n      <FlatList data={feed}/>\n    </View>\n  );\n}`,
-];
-
-function Typewriter({ text }: { text: string }) {
-  const [shown, setShown] = useState("");
-  useEffect(() => {
-    setShown("");
-    let i = 0;
-    const id = setInterval(() => {
-      i++;
-      setShown(text.slice(0, i));
-      if (i >= text.length) clearInterval(id);
-    }, 18);
-    return () => clearInterval(id);
-  }, [text]);
-  return (
-    <pre className="font-mono text-[11px] leading-relaxed text-primary-glow whitespace-pre-wrap">
-      {shown}
-      <span className="animate-blink text-accent-glow">▊</span>
-    </pre>
-  );
-}
-
-function FloatingCode({
-  delay,
-  className,
-  snippet,
-  filename,
-}: {
-  delay: number;
-  className: string;
-  snippet: string;
-  filename: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay, duration: 1.2 }}
-      className={`absolute hidden lg:block w-72 rounded-xl glass-strong p-4 animate-float ${className}`}
-      style={{ animationDelay: `${delay}s` }}
-    >
-      <div className="mb-2 flex items-center gap-2">
-        <div className="flex gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-accent" />
-          <span className="h-2 w-2 rounded-full bg-primary-glow" />
-          <span className="h-2 w-2 rounded-full bg-muted-foreground/40" />
-        </div>
-        <span className="ml-auto font-mono text-[10px] text-muted-foreground">{filename}</span>
-      </div>
-      <Typewriter text={snippet} />
-    </motion.div>
-  );
-}
+const PHONE = "9970014674";
+const WHATSAPP = `https://wa.me/91${PHONE}?text=Hi%20Shubham%2C%20I%27d%20like%20a%20free%20mockup%20for%20my%20project.`;
 
 export function Hero() {
-  const [snippetIdx, setSnippetIdx] = useState(0);
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    const id = setInterval(() => setSnippetIdx((i) => (i + 1) % codeSnippets.length), 6000);
-    return () => clearInterval(id);
+    setMounted(true);
+  }, []);
+
+  // Mouse-tracked blob parallax (verelios pattern)
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      const x = e.clientX - window.innerWidth / 2;
+      const y = e.clientY - window.innerHeight / 2;
+      document.documentElement.style.setProperty("--mx", String(x));
+      document.documentElement.style.setProperty("--my", String(y));
+    };
+    window.addEventListener("mousemove", handler);
+    return () => window.removeEventListener("mousemove", handler);
   }, []);
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-28 pb-16 md:pt-32"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12"
     >
-      <FloatingCode
-        delay={1.2}
-        className="left-[5%] top-[18%]"
-        snippet={codeSnippets[snippetIdx]}
-        filename="ai_agent.ts"
-      />
-      <FloatingCode
-        delay={1.8}
-        className="right-[5%] top-[28%]"
-        snippet={codeSnippets[(snippetIdx + 1) % codeSnippets.length]}
-        filename="page.tsx"
-      />
-      <FloatingCode
-        delay={2.4}
-        className="left-[8%] bottom-[15%]"
-        snippet={codeSnippets[(snippetIdx + 2) % codeSnippets.length]}
-        filename="model.py"
-      />
-
-      <div className="relative z-10 max-w-5xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
-        >
-          <Sparkles className="h-3.5 w-3.5 text-accent-glow" />
-          <span className="text-muted-foreground">
-            Open for full-stack & freelance · 2026
-          </span>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="font-display text-[44px] leading-[1] sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter"
-        >
-          <span className="block text-foreground text-shadow-glow">Shubham Yeljale</span>
-          <span className="block mt-2 text-gradient animate-gradient bg-[length:200%_auto]">
-            Building the future
-          </span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mx-auto mt-8 max-w-2xl text-base md:text-lg text-muted-foreground"
-        >
-          Full-Stack <span className="text-foreground">·</span> Web{" "}
-          <span className="text-foreground">·</span> Mobile <span className="text-foreground">·</span>{" "}
-          AI.
-          <br className="hidden md:block" />
-          I build production websites and mobile apps end-to-end — from database to pixel — with
-          a love for motion design and clean APIs.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
-        >
-          <a
-            href="#projects"
-            className="group relative overflow-hidden rounded-full bg-neon px-8 py-3.5 font-medium text-primary-foreground glow-magenta hover:scale-105 transition-transform"
-          >
-            <span className="relative z-10">Explore My Work →</span>
-          </a>
-          <a
-            href="#contact"
-            className="rounded-full glass px-8 py-3.5 font-medium text-foreground hover:bg-secondary/50 transition-colors"
-          >
-            Let&apos;s Talk
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.1 }}
-          className="mt-16 grid grid-cols-3 gap-3 md:gap-4 max-w-xl mx-auto"
-        >
-          {[
-            { v: "3+", l: "Years" },
-            { v: "10+", l: "Projects" },
-            { v: "10+", l: "Clients" },
-          ].map((s) => (
-            <div key={s.l} className="rounded-2xl glass px-3 py-3 md:px-4">
-              <div className="font-display text-xl md:text-2xl font-bold text-gradient">{s.v}</div>
-              <div className="text-[10px] md:text-[11px] uppercase tracking-wider text-muted-foreground mt-0.5">
-                {s.l}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+      {/* Animated colorful blobs */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute top-10 left-4 md:left-10 w-72 md:w-96 h-72 md:h-96 rounded-full mix-blend-screen blur-3xl opacity-40 animate-pulse-glow"
+          style={{
+            background:
+              "radial-gradient(circle, hsl(220 100% 60% / 0.55) 0%, transparent 70%)",
+            transform: "translate(calc(var(--mx, 0) * 0.02px), calc(var(--my, 0) * 0.02px))",
+            transition: "transform 0.4s ease-out",
+          }}
+        />
+        <div
+          className="absolute top-40 right-4 md:right-10 w-72 md:w-96 h-72 md:h-96 rounded-full mix-blend-screen blur-3xl opacity-40 animate-pulse-glow"
+          style={{
+            background:
+              "radial-gradient(circle, hsl(190 100% 55% / 0.50) 0%, transparent 70%)",
+            transform: "translate(calc(var(--mx, 0) * -0.015px), calc(var(--my, 0) * 0.015px))",
+            transition: "transform 0.4s ease-out",
+            animationDelay: "1.5s",
+          }}
+        />
+        <div
+          className="absolute bottom-10 left-1/3 w-72 md:w-96 h-72 md:h-96 rounded-full mix-blend-screen blur-3xl opacity-30 animate-pulse-glow"
+          style={{
+            background:
+              "radial-gradient(circle, hsl(280 80% 60% / 0.45) 0%, transparent 70%)",
+            transform: "translate(calc(var(--mx, 0) * 0.01px), calc(var(--my, 0) * -0.01px))",
+            transition: "transform 0.4s ease-out",
+            animationDelay: "3s",
+          }}
+        />
       </div>
 
-      <motion.a
-        href="#about"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground"
-      >
-        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-        <ArrowDown className="h-4 w-4 animate-bounce" />
-      </motion.a>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={mounted ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="max-w-5xl mx-auto text-center"
+        >
+          {/* Trust badge */}
+          <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full glass border border-blue-400/20 text-blue-300 text-xs sm:text-sm font-medium mb-8 backdrop-blur-sm">
+            <span className="relative flex items-center justify-center">
+              <span className="absolute w-5 h-5 rounded-full bg-emerald-400/30 animate-ping" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+            </span>
+            <span>Trusted by 10+ Businesses Across India</span>
+            <span className="hidden sm:flex -space-x-1 ml-1">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400"
+                />
+              ))}
+            </span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05] tracking-tight">
+            We Build{" "}
+            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300 bg-clip-text text-transparent">
+              Websites &amp; Apps
+            </span>
+            <br />
+            That Grow Your Business
+          </h1>
+
+          {/* Subhead */}
+          <p className="text-base sm:text-lg lg:text-xl text-foreground/75 mb-10 max-w-3xl mx-auto leading-relaxed">
+            Custom websites, mobile apps and AI tools — idea to launch in under{" "}
+            <span className="text-blue-300 font-semibold">3 weeks</span>.
+            <br className="hidden sm:block" />
+            Free mockup in 48 hours. No upfront payment. Built by Shubham Yeljale, full-stack developer based in Pune.
+          </p>
+
+          {/* Dual CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+            <a
+              href="#contact"
+              className="group relative inline-flex items-center justify-center text-base sm:text-lg px-7 sm:px-10 py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold rounded-xl shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)] transition-all duration-300 hover:scale-105 overflow-hidden w-full sm:w-auto"
+            >
+              <span className="relative z-10 flex items-center">
+                Get Your Free Mockup
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+              </span>
+              <span
+                className="absolute inset-0 w-1/3 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 pointer-events-none"
+                style={{ animation: "gradient-shift 3s ease-in-out infinite" }}
+              />
+            </a>
+
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center text-base sm:text-lg px-7 sm:px-8 py-3.5 sm:py-4 border-2 border-emerald-500/50 bg-emerald-500/10 hover:bg-emerald-500/20 hover:border-emerald-400/70 text-foreground font-medium rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.15)] hover:shadow-[0_0_35px_rgba(16,185,129,0.3)] transition-all duration-300 w-full sm:w-auto"
+            >
+              <MessageCircle className="mr-2 w-5 h-5 text-emerald-400" />
+              Chat on WhatsApp
+            </a>
+          </div>
+
+          {/* Urgency */}
+          <p className="text-xs text-foreground/55 mb-12 sm:mb-14 flex items-center justify-center gap-1.5">
+            <Clock className="w-3.5 h-3.5" />
+            Limited slots — currently accepting only 3 new projects this month
+          </p>
+
+          {/* Stat cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 max-w-3xl mx-auto">
+            {[
+              { Icon: Zap, value: "10+", label: "Projects Delivered" },
+              { Icon: Star, value: "10+", label: "Happy Clients" },
+              { Icon: Clock, value: "<3 wk", label: "Avg. Delivery" },
+              { Icon: CheckCircle2, value: "48 hr", label: "Free Mockup" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="group relative p-3 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-blue-500/30 hover:bg-blue-500/[0.05] transition-all duration-500 hover:scale-105"
+              >
+                <s.Icon className="w-5 h-5 text-blue-400 mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <div className="text-xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 tabular-nums">
+                  {s.value}
+                </div>
+                <div className="text-[10px] sm:text-sm text-foreground/55">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

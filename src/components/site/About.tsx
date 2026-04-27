@@ -1,64 +1,109 @@
 import { motion } from "framer-motion";
+import {
+  Clock3,
+  UserCheck,
+  Target,
+  Wallet,
+  ShieldCheck,
+  Search,
+} from "lucide-react";
+
+const benefits = [
+  {
+    Icon: Clock3,
+    title: "Under 3-Week Delivery",
+    desc: "Most projects ship in 1–3 weeks. I keep scope tight and communicate every step so there are zero surprises.",
+  },
+  {
+    Icon: UserCheck,
+    title: "Direct Communication",
+    desc: "You're talking to the person who's actually building it. No account managers, no telephone game.",
+  },
+  {
+    Icon: Target,
+    title: "Built to Convert",
+    desc: "I optimize for the metric that matters to you — bookings, signups, sales — not just pixels.",
+  },
+  {
+    Icon: Wallet,
+    title: "Pay in Milestones",
+    desc: "No upfront payment. You only pay when each agreed milestone is delivered and you're happy.",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "7-Day Free Post-Launch Support",
+    desc: "After launch, a full week of free fixes and tweaks. Bugs and small adjustments are on me.",
+  },
+  {
+    Icon: Search,
+    title: "Free SEO & Speed Optimization",
+    desc: "Every site ships with proper meta tags, OG images, sitemap, and Core Web Vitals tuned green.",
+  },
+];
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 md:py-32 px-4">
-      <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+    <section id="about" className="relative py-20 sm:py-32 px-4">
+      <div className="mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9 }}
-          className="relative mx-auto"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="absolute -inset-6 rounded-full bg-gradient-to-tr from-primary/30 via-accent/30 to-primary-glow/30 blur-3xl animate-pulse-glow" />
-          <div className="relative h-64 w-64 sm:h-80 sm:w-80 md:h-96 md:w-96 rounded-full overflow-hidden neon-border glass-strong grid place-items-center">
-            <span className="font-display text-[140px] md:text-[180px] font-black leading-none text-gradient">
-              SY
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-blue-300 mb-4">
+            // why_me
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Why Choose{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Shubham?
             </span>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-t from-background/40 via-transparent to-transparent" />
-          </div>
-          <div
-            className="absolute inset-0 rounded-full border border-accent/20 animate-spin"
-            style={{ animationDuration: "30s" }}
-          />
-          <div
-            className="absolute -inset-4 rounded-full border border-primary/15 animate-spin"
-            style={{ animationDuration: "45s", animationDirection: "reverse" }}
-          />
+          </h2>
+          <p className="text-base sm:text-lg text-foreground/65 max-w-2xl mx-auto">
+            A one-person studio with agency-level output — without agency-level overhead, agency-level
+            timelines, or agency-level invoices.
+          </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9 }}
-        >
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent-glow mb-4">
-            // about_me
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            A full-stack craftsman in the{" "}
-            <span className="text-gradient">space between</span> code and motion.
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            I&apos;m Shubham Yeljale, a full-stack developer based in Pune, India. I build
-            production-grade websites and mobile applications end-to-end — design, frontend,
-            backend, APIs, and deployment.
-          </p>
-          <p className="text-muted-foreground leading-relaxed mb-8">
-            I&apos;ve shipped 10+ projects across marketing platforms, e-commerce, AI chatbots,
-            real-time tools, and brand sites. I obsess over performance, accessibility, and
-            motion design that makes people whisper &ldquo;how did they do that?&rdquo;.
-          </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {benefits.map((b, i) => (
+            <motion.div
+              key={b.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+              className="group relative rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-blue-500/30 hover:bg-blue-500/[0.05] p-5 sm:p-6 transition-all duration-500"
+            >
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 mb-4 group-hover:scale-110 transition-transform">
+                <b.Icon className="w-5 h-5 text-blue-300" />
+              </div>
+              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">{b.title}</h3>
+              <p className="text-sm text-foreground/65 leading-relaxed">{b.desc}</p>
+            </motion.div>
+          ))}
+        </div>
 
-          <div className="flex flex-wrap gap-2 md:gap-3">
-            {["React", "Next.js", "TypeScript", "Node.js", "React Native", "Tailwind", "Three.js", "AI"].map((t) => (
-              <span key={t} className="rounded-full glass px-3 py-1.5 text-xs font-mono">
-                {t}
-              </span>
-            ))}
-          </div>
+        {/* Closing CTA strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 sm:mt-16 rounded-3xl bg-gradient-to-r from-blue-600/15 via-cyan-500/15 to-blue-600/15 border border-blue-500/25 p-6 sm:p-10 text-center"
+        >
+          <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-3">
+            Got an idea? Let&apos;s make it real.
+          </h3>
+          <p className="text-foreground/70 mb-6 max-w-xl mx-auto">
+            Free consultation, free mockup in 48 hours, and you only pay when you see results.
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center px-7 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold rounded-xl shadow-[0_0_28px_rgba(59,130,246,0.45)] transition-all hover:scale-105"
+          >
+            Get Started — It&apos;s Free
+          </a>
         </motion.div>
       </div>
     </section>
