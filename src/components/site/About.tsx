@@ -1,122 +1,65 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { SplitReveal } from "./SplitReveal";
-import { Marquee } from "./Marquee";
-
-function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-20% 0px" });
-  const [val, setVal] = useState(0);
-  const reduce = useReducedMotion();
-
-  useEffect(() => {
-    if (!inView) return;
-    if (reduce) {
-      setVal(to);
-      return;
-    }
-    const start = performance.now();
-    const dur = 1600;
-    let raf = 0;
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - start) / dur);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setVal(Math.round(to * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to, reduce]);
-
-  return (
-    <span ref={ref} className="tabular-nums">
-      {val}
-      {suffix}
-    </span>
-  );
-}
-
-const skills = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node",
-  "Tailwind",
-  "Framer Motion",
-  "GSAP",
-  "Three.js",
-  "Figma",
-  "Supabase",
-  "Shopify",
-  "Vite",
-  "Postgres",
-  "WebGL",
-];
+import { motion } from "framer-motion";
 
 export function About() {
   return (
-    <section id="about" className="relative py-32 md:py-48">
-      <div className="container-edge">
-        <div className="mb-16 flex items-end justify-between gap-8">
-          <div>
-            <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              · 01 / About
-            </p>
-            <SplitReveal
-              as="h2"
-              className="font-display text-[clamp(40px,7vw,96px)] leading-[0.95] text-foreground"
-            >
-              A developer obsessed with craft.
-            </SplitReveal>
+    <section id="about" className="relative py-24 md:py-32 px-4">
+      <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9 }}
+          className="relative mx-auto"
+        >
+          <div className="absolute -inset-6 rounded-full bg-gradient-to-tr from-primary/30 via-accent/30 to-primary-glow/30 blur-3xl animate-pulse-glow" />
+          <div className="relative h-64 w-64 sm:h-80 sm:w-80 md:h-96 md:w-96 rounded-full overflow-hidden neon-border glass-strong grid place-items-center">
+            <span className="font-display text-[140px] md:text-[180px] font-black leading-none text-gradient">
+              SY
+            </span>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-t from-background/40 via-transparent to-transparent" />
           </div>
-        </div>
+          <div
+            className="absolute inset-0 rounded-full border border-accent/20 animate-spin"
+            style={{ animationDuration: "30s" }}
+          />
+          <div
+            className="absolute -inset-4 rounded-full border border-primary/15 animate-spin"
+            style={{ animationDuration: "45s", animationDirection: "reverse" }}
+          />
+        </motion.div>
 
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10% 0px" }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6 text-lg leading-relaxed text-muted-foreground md:col-span-7"
-          >
-            <p>
-              I&apos;m Shubham — a software developer based in Pune. I help studios, founders, and
-              teams ship websites and products that move with intention.
-            </p>
-            <p>
-              My focus is the intersection of motion, performance, and detail. The kind of work that
-              loads in under a second and still feels handcrafted when you scroll.
-            </p>
-            <p className="text-foreground">
-              When the brief reads &ldquo;just a website,&rdquo; I read it as &ldquo;something
-              memorable.&rdquo;
-            </p>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9 }}
+        >
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent-glow mb-4">
+            // about_me
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            A full-stack craftsman in the{" "}
+            <span className="text-gradient">space between</span> code and motion.
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            I&apos;m Shubham Yeljale, a full-stack developer based in Pune, India. I build
+            production-grade websites and mobile applications end-to-end — design, frontend,
+            backend, APIs, and deployment.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            I&apos;ve shipped 10+ projects across marketing platforms, e-commerce, AI chatbots,
+            real-time tools, and brand sites. I obsess over performance, accessibility, and
+            motion design that makes people whisper &ldquo;how did they do that?&rdquo;.
+          </p>
 
-          <div className="md:col-span-5">
-            <div className="sticky top-24 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border">
-              {[
-                { value: 30, suffix: "+", label: "Projects shipped" },
-                { value: 4, suffix: "+", label: "Years building for the web" },
-                { value: 100, suffix: "%", label: "Client satisfaction" },
-              ].map((s) => (
-                <div key={s.label} className="bg-surface p-8">
-                  <div className="font-display text-5xl text-foreground md:text-6xl">
-                    <CountUp to={s.value} suffix={s.suffix} />
-                  </div>
-                  <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2 md:gap-3">
+            {["React", "Next.js", "TypeScript", "Node.js", "React Native", "Tailwind", "Three.js", "AI"].map((t) => (
+              <span key={t} className="rounded-full glass px-3 py-1.5 text-xs font-mono">
+                {t}
+              </span>
+            ))}
           </div>
-        </div>
-      </div>
-
-      {/* Skill ribbon */}
-      <div className="mt-24 border-y border-border py-6">
-        <Marquee items={skills} duration={50} separator="/" />
+        </motion.div>
       </div>
     </section>
   );

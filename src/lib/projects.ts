@@ -21,55 +21,135 @@ export const projectSchema = z.object({
 
 export type Project = z.infer<typeof projectSchema>;
 
-export const STORAGE_KEY = "sy_projects";
+// Bumped each refactor so old localStorage seed data is refreshed.
+export const STORAGE_KEY = "sy_projects_v3";
+
+// Capture front page at desktop viewport, then crop to a clean hero ratio so the
+// site name + headline are visible. wait/2 lets fonts/animations settle.
+const thumb = (url: string) =>
+  `https://image.thum.io/get/width/1600/crop/900/viewportWidth/1440/wait/2/${url}`;
 
 export const seedProjects: Project[] = [
   {
-    id: "lumen-studio",
-    title: "Lumen Studio",
+    id: "yesitryme",
+    title: "YesITryMe",
     shortDescription:
-      "A creative agency site with a WebGL hero and scroll-driven case studies.",
-    longDescription:
-      "Lumen needed a digital storefront that felt as crafted as the work they ship. We rebuilt the site from the ground up with a WebGL hero, scroll-jacked case studies, and a CMS-driven publishing flow that lets the studio launch new work in minutes.",
-    year: 2025,
-    role: "Lead developer",
-    stack: ["Next.js", "Three.js", "GSAP", "Sanity"],
-    liveUrl: "https://example.com/lumen",
+      "Marketing-rewards platform — earn coins for engagement, redeem perks, full-stack with auth, blog, and lead capture.",
+    longDescription: "",
+    year: 2026,
+    role: "Full-stack developer",
+    stack: ["React", "Node.js", "Tailwind", "MongoDB"],
+    liveUrl: "https://www.yesitryme.com/",
     githubUrl: "",
-    coverImage:
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1600&q=80&auto=format&fit=crop",
+    coverImage: thumb("https://www.yesitryme.com/"),
     featured: true,
   },
   {
-    id: "drift-commerce",
-    title: "Drift Commerce",
+    id: "jahiratbazi",
+    title: "Jahiratbazi",
     shortDescription:
-      "A headless Shopify storefront with cinematic product pages and instant checkout.",
-    longDescription:
-      "Drift wanted to ditch their themed Shopify and ship a storefront that felt closer to a fashion editorial than a generic store. Built on Hydrogen with a custom design system, magnetic interactions, and view-transition product pages.",
+      "Digital-marketing agency site with services, case studies, and lead-generation funnels.",
     year: 2025,
-    role: "Full-stack engineer",
-    stack: ["Hydrogen", "Shopify", "Tailwind", "Framer Motion"],
-    liveUrl: "https://example.com/drift",
-    githubUrl: "https://github.com/example/drift",
-    coverImage:
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1600&q=80&auto=format&fit=crop",
+    role: "Frontend lead",
+    stack: ["React", "Vite", "Framer Motion", "Tailwind"],
+    liveUrl: "https://jahiratbazi-fj9i.vercel.app/",
+    coverImage: thumb("https://jahiratbazi-fj9i.vercel.app/"),
     featured: true,
   },
   {
-    id: "pulse-analytics",
-    title: "Pulse Analytics",
+    id: "smartro",
+    title: "SmartRO",
     shortDescription:
-      "A real-time SaaS dashboard with live charts, alerts, and collaborative annotations.",
-    longDescription:
-      "Pulse helps growth teams see revenue moving in real-time. We designed and shipped the v1 dashboard, the data-streaming layer, and a flexible chart engine that handles millions of data points without dropping a frame.",
-    year: 2024,
-    role: "Product engineer",
-    stack: ["React", "TypeScript", "Recharts", "Supabase", "WebSockets"],
-    liveUrl: "https://example.com/pulse",
-    githubUrl: "https://github.com/example/pulse",
-    coverImage:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80&auto=format&fit=crop",
+      "RO water-purifier brand site — pure water, smart living. Built with cinematic hero, products and service booking.",
+    year: 2025,
+    role: "Full-stack developer",
+    stack: ["React", "Tailwind", "Node.js"],
+    liveUrl: "https://smart-ro-3fa9.vercel.app/",
+    coverImage: thumb("https://smart-ro-3fa9.vercel.app/"),
+    featured: true,
+  },
+  {
+    id: "starsecurity",
+    title: "Star Security & Bouncer",
+    shortDescription:
+      "Premium security guards & bouncer hire across Maharashtra — lead capture, services, deployment areas.",
+    year: 2025,
+    role: "Frontend developer",
+    stack: ["React", "Tailwind", "Vercel"],
+    liveUrl: "https://starbright-reborn.lovable.app/",
+    coverImage: thumb("https://starbright-reborn.lovable.app/"),
+    featured: false,
+  },
+  {
+    id: "entomon",
+    title: "Entomon Pest Solutions",
+    shortDescription:
+      "Pest-control services site for a Pune-based company — services, contact, booking flow.",
+    year: 2025,
+    role: "Frontend developer",
+    stack: ["React", "Vite", "Tailwind"],
+    liveUrl: "https://entomon-new-website.vercel.app/",
+    coverImage: thumb("https://entomon-new-website.vercel.app/"),
+    featured: false,
+  },
+  {
+    id: "greenyogagro",
+    title: "Greenyogagro",
+    shortDescription:
+      "Yoga & wellness brand site — cinematic hero, classes catalog, and lead capture for studio bookings.",
+    year: 2025,
+    role: "Frontend developer",
+    stack: ["React", "Tailwind", "Framer Motion"],
+    liveUrl: "https://greenyogagro.com/",
+    coverImage: thumb("https://greenyogagro.com/"),
+    featured: false,
+  },
+  {
+    id: "artistly",
+    title: "Artistly",
+    shortDescription:
+      "Performing-artist booking platform — discover, filter, and book performers for events.",
+    year: 2025,
+    role: "Full-stack developer",
+    stack: ["React", "Next.js", "Tailwind", "API"],
+    liveUrl: "https://artistly-lime.vercel.app/",
+    coverImage: thumb("https://artistly-lime.vercel.app/"),
+    featured: true,
+  },
+  {
+    id: "chatbot-ai",
+    title: "Chatbot AI",
+    shortDescription:
+      "Conversational AI chatbot built with React + an LLM backend — streaming responses, history, and tool use.",
+    year: 2025,
+    role: "Full-stack AI developer",
+    stack: ["React", "Node.js", "OpenAI", "WebSockets"],
+    liveUrl: "https://chat-bot-ai-v6fl.vercel.app/",
+    coverImage: thumb("https://chat-bot-ai-v6fl.vercel.app/"),
+    featured: true,
+  },
+  {
+    id: "whiteboard",
+    title: "Collaborative Whiteboard",
+    shortDescription:
+      "Real-time multi-user whiteboard — draw, sticky notes, shapes, presence, and shareable rooms.",
+    year: 2025,
+    role: "Full-stack developer",
+    stack: ["React", "Vite", "Canvas", "WebSockets"],
+    liveUrl: "https://whiteboard-collaborate-create.vercel.app/",
+    coverImage: thumb("https://whiteboard-collaborate-create.vercel.app/"),
+    featured: false,
+  },
+  {
+    id: "starsecurity-prod",
+    title: "Star Security (production)",
+    shortDescription:
+      "Production deployment of Star Security & Bouncer with custom domain and contact forms.",
+    year: 2025,
+    role: "Frontend developer",
+    stack: ["React", "Tailwind"],
+    liveUrl: "https://www.starsecuritybouncer.com/",
+    coverImage: thumb("https://www.starsecuritybouncer.com/"),
     featured: false,
   },
 ];

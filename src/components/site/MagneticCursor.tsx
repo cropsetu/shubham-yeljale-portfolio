@@ -1,74 +1,33 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export function MagneticCursor() {
-  const x = useMotionValue(-100);
-  const y = useMotionValue(-100);
-  const sx = useSpring(x, { damping: 25, stiffness: 300, mass: 0.4 });
-  const sy = useSpring(y, { damping: 25, stiffness: 300, mass: 0.4 });
-
-  const [label, setLabel] = useState<string | null>(null);
-  const [hovering, setHovering] = useState(false);
+  const [pos, setPos] = useState({ x: -100, y: -100 });
   const [enabled, setEnabled] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    if (isTouch) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     setEnabled(true);
-
-    const onMove = (e: MouseEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
-      const target = e.target as HTMLElement | null;
-      const interactive = target?.closest<HTMLElement>("[data-cursor]");
-      if (interactive) {
-        setLabel(interactive.dataset.cursor || null);
-        setHovering(true);
-      } else {
-        setLabel(null);
-        setHovering(false);
-      }
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [x, y]);
+    const handler = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", handler);
+    return () => window.removeEventListener("mousemove", handler);
+  }, []);
 
   if (!enabled) return null;
-
   return (
-    <motion.div
-      ref={ref}
-      style={{
-        x: sx,
-        y: sy,
-        translateX: "-50%",
-        translateY: "-50%",
-      }}
-      className="pointer-events-none fixed left-0 top-0 z-[9999] hidden md:flex"
-    >
-      <motion.div
-        animate={{
-          width: hovering ? 72 : 14,
-          height: hovering ? 72 : 14,
-          backgroundColor: hovering ? "rgba(255,255,255,0.0)" : "rgba(245,245,247,0.9)",
-        }}
-        transition={{ type: "spring", damping: 20, stiffness: 250 }}
-        className="flex items-center justify-center rounded-full"
+    <>
+      <div
+        className="pointer-events-none fixed z-[101] h-8 w-8 rounded-full mix-blend-screen transition-transform duration-100"
         style={{
-          boxShadow: hovering
-            ? "0 0 0 1.5px rgba(245,245,247,0.85)"
-            : "0 0 16px rgba(124,92,255,0.4)",
-          mixBlendMode: hovering ? "normal" : "difference",
+          left: pos.x - 16,
+          top: pos.y - 16,
+          background: "radial-gradient(circle, hsl(320 100% 70% / 0.7), transparent 70%)",
         }}
-      >
-        {label ? (
-          <span className="font-mono text-[10px] uppercase tracking-widest text-foreground">
-            {label}
-          </span>
-        ) : null}
-      </motion.div>
-    </motion.div>
+      />
+      <div
+        className="pointer-events-none fixed z-[101] h-2 w-2 rounded-full bg-accent-glow transition-transform"
+        style={{ left: pos.x - 4, top: pos.y - 4 }}
+      />
+    </>
   );
 }

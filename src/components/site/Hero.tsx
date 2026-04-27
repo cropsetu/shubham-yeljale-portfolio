@@ -1,127 +1,187 @@
-import { Link } from "@tanstack/react-router";
-import { Monogram } from "./Monogram";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { Marquee } from "./Marquee";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { ArrowDown, Sparkles } from "lucide-react";
 
-const headlineWords = ["I", "build", "websites", "that", "feel", "alive."];
+const codeSnippets = [
+  `// AI agent — autonomous coding\nconst agent = new LLM({ model: "gpt-4o" });\nawait agent.deploy({\n  task: "scale-to-zero",\n  region: "edge"\n});`,
+  `// React Server Component\nexport default async function Page() {\n  const data = await fetch(api);\n  return <Stream data={data} />;\n}`,
+  `# Train neural net\nimport torch.nn as nn\nclass Vision(nn.Module):\n    def forward(self, x):\n        return self.attn(x)`,
+  `// React Native screen\nexport function Home() {\n  return (\n    <View style={s.galaxy}>\n      <FlatList data={feed}/>\n    </View>\n  );\n}`,
+];
+
+function Typewriter({ text }: { text: string }) {
+  const [shown, setShown] = useState("");
+  useEffect(() => {
+    setShown("");
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setShown(text.slice(0, i));
+      if (i >= text.length) clearInterval(id);
+    }, 18);
+    return () => clearInterval(id);
+  }, [text]);
+  return (
+    <pre className="font-mono text-[11px] leading-relaxed text-primary-glow whitespace-pre-wrap">
+      {shown}
+      <span className="animate-blink text-accent-glow">▊</span>
+    </pre>
+  );
+}
+
+function FloatingCode({
+  delay,
+  className,
+  snippet,
+  filename,
+}: {
+  delay: number;
+  className: string;
+  snippet: string;
+  filename: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 1.2 }}
+      className={`absolute hidden lg:block w-72 rounded-xl glass-strong p-4 animate-float ${className}`}
+      style={{ animationDelay: `${delay}s` }}
+    >
+      <div className="mb-2 flex items-center gap-2">
+        <div className="flex gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-accent" />
+          <span className="h-2 w-2 rounded-full bg-primary-glow" />
+          <span className="h-2 w-2 rounded-full bg-muted-foreground/40" />
+        </div>
+        <span className="ml-auto font-mono text-[10px] text-muted-foreground">{filename}</span>
+      </div>
+      <Typewriter text={snippet} />
+    </motion.div>
+  );
+}
 
 export function Hero() {
-  const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-  const indicatorOpacity = useTransform(scrollY, [0, 200], [1, 0]);
+  const [snippetIdx, setSnippetIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setSnippetIdx((i) => (i + 1) % codeSnippets.length), 6000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden">
-      <div className="vignette" />
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-28 pb-16 md:pt-32"
+    >
+      <FloatingCode
+        delay={1.2}
+        className="left-[5%] top-[18%]"
+        snippet={codeSnippets[snippetIdx]}
+        filename="ai_agent.ts"
+      />
+      <FloatingCode
+        delay={1.8}
+        className="right-[5%] top-[28%]"
+        snippet={codeSnippets[(snippetIdx + 1) % codeSnippets.length]}
+        filename="page.tsx"
+      />
+      <FloatingCode
+        delay={2.4}
+        className="left-[8%] bottom-[15%]"
+        snippet={codeSnippets[(snippetIdx + 2) % codeSnippets.length]}
+        filename="model.py"
+      />
 
-      {/* Top nav */}
-      <header className="container-edge relative z-10 flex items-center justify-between pt-8">
+      <div className="relative z-10 max-w-5xl text-center">
         <motion.div
-          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-3"
-          data-cursor="home"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
         >
-          <Monogram className="h-6 w-12 text-foreground" />
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            JahiratBazi
+          <Sparkles className="h-3.5 w-3.5 text-accent-glow" />
+          <span className="text-muted-foreground">
+            Open for full-stack & freelance · 2026
           </span>
         </motion.div>
-        <motion.nav
-          initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="hidden items-center gap-8 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:flex"
-        >
-          <a href="#work" className="transition-colors hover:text-foreground" data-cursor="view">
-            Work
-          </a>
-          <a href="#about" className="transition-colors hover:text-foreground" data-cursor="view">
-            About
-          </a>
-          <a href="#services" className="transition-colors hover:text-foreground" data-cursor="view">
-            Services
-          </a>
-          <a href="#contact" className="transition-colors hover:text-foreground" data-cursor="view">
-            Contact
-          </a>
-        </motion.nav>
-      </header>
 
-      {/* Headline */}
-      <div className="container-edge relative z-10 flex flex-1 flex-col justify-center pb-32 pt-20">
-        <motion.span
-          initial={reduce ? { opacity: 1 } : { opacity: 0, y: 12 }}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-border bg-surface/50 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground backdrop-blur"
+          transition={{ duration: 1, delay: 0.2 }}
+          className="font-display text-[44px] leading-[1] sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_8px_var(--accent-cyan)]" />
-          Available for select projects · 2025–2026
-        </motion.span>
-
-        <h1 className="font-display text-[clamp(48px,11vw,176px)] leading-[0.92] text-foreground">
-          {headlineWords.map((w, i) => {
-            const isAccent = w === "alive.";
-            return (
-              <span key={i} className="inline-block overflow-hidden align-bottom pr-[0.18em]">
-                <motion.span
-                  className={`inline-block ${isAccent ? "accent-gradient-text font-serif italic" : ""}`}
-                  initial={reduce ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  transition={{
-                    duration: 0.9,
-                    delay: 0.6 + i * 0.08,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  {w}
-                </motion.span>
-              </span>
-            );
-          })}
-        </h1>
+          <span className="block text-foreground text-shadow-glow">Shubham Yeljale</span>
+          <span className="block mt-2 text-gradient animate-gradient bg-[length:200%_auto]">
+            Building the future
+          </span>
+        </motion.h1>
 
         <motion.p
-          initial={reduce ? { opacity: 1 } : { opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
+          transition={{ duration: 1, delay: 0.5 }}
+          className="mx-auto mt-8 max-w-2xl text-base md:text-lg text-muted-foreground"
         >
-          Software developer based in Pune, India — turning ideas into cinematic, fast,
-          conversion-ready products.
+          Full-Stack <span className="text-foreground">·</span> Web{" "}
+          <span className="text-foreground">·</span> Mobile <span className="text-foreground">·</span>{" "}
+          AI.
+          <br className="hidden md:block" />
+          I build production websites and mobile apps end-to-end — from database to pixel — with
+          a love for motion design and clean APIs.
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        >
+          <a
+            href="#projects"
+            className="group relative overflow-hidden rounded-full bg-neon px-8 py-3.5 font-medium text-primary-foreground glow-magenta hover:scale-105 transition-transform"
+          >
+            <span className="relative z-10">Explore My Work →</span>
+          </a>
+          <a
+            href="#contact"
+            className="rounded-full glass px-8 py-3.5 font-medium text-foreground hover:bg-secondary/50 transition-colors"
+          >
+            Let&apos;s Talk
+          </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.1 }}
+          className="mt-16 grid grid-cols-3 gap-3 md:gap-4 max-w-xl mx-auto"
+        >
+          {[
+            { v: "3+", l: "Years" },
+            { v: "10+", l: "Projects" },
+            { v: "10+", l: "Clients" },
+          ].map((s) => (
+            <div key={s.l} className="rounded-2xl glass px-3 py-3 md:px-4">
+              <div className="font-display text-xl md:text-2xl font-bold text-gradient">{s.v}</div>
+              <div className="text-[10px] md:text-[11px] uppercase tracking-wider text-muted-foreground mt-0.5">
+                {s.l}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Bottom marquee */}
-      <div className="relative z-10 border-y border-border bg-surface/30 py-4 backdrop-blur">
-        <Marquee
-          items={[
-            "Available for freelance",
-            "React",
-            "Next.js",
-            "Motion design",
-            "Full-stack",
-            "2025 / 2026",
-          ]}
-        />
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        style={{ opacity: indicatorOpacity }}
-        className="pointer-events-none fixed bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
+      <motion.a
+        href="#about"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground"
       >
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-          scroll
-        </span>
-        <motion.span
-          className="block h-12 w-px origin-top bg-foreground/40"
-          animate={reduce ? undefined : { scaleY: [0.3, 1, 0.3] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
+        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <ArrowDown className="h-4 w-4 animate-bounce" />
+      </motion.a>
     </section>
   );
 }

@@ -1,84 +1,80 @@
-import { useRef } from "react";
 import { motion } from "framer-motion";
-import { SplitReveal } from "./SplitReveal";
+import { Quote } from "lucide-react";
 
 const quotes = [
   {
-    quote:
-      "Shubham is the rare engineer who treats motion like a first-class part of the product. Our launch felt like a film.",
-    author: "Anika Rao",
-    role: "Founder, Lumen Studio",
+    text: "Shubham shipped our marketing platform in record time. Clean code, fast feedback loops, and the motion design felt premium.",
+    name: "Client",
+    role: "Marketing Agency",
   },
   {
-    quote:
-      "He took our vague brief and shipped a storefront we&apos;re proud to send to clients. Conversion is up 38%.",
-    author: "Marco Vidal",
-    role: "Head of Growth, Drift",
+    text: "The most thoughtful developer we've worked with. He owns the problem end-to-end — from design to deployment.",
+    name: "Founder",
+    role: "Wellness Brand",
   },
   {
-    quote:
-      "Pixel-perfect, fast, and on time. We&apos;ve worked with three agencies before — none of them came close.",
-    author: "Sara Lim",
-    role: "PM, Pulse Analytics",
+    text: "Took a vague idea and turned it into a beautiful, fast mobile-friendly site. Highly recommend.",
+    name: "Client",
+    role: "Service Business",
   },
   {
-    quote:
-      "He genuinely cares. Every detail, every interaction. That&apos;s why we&apos;ve hired him three times.",
-    author: "Daniel Ortiz",
-    role: "Creative Director, North &amp; Co.",
+    text: "Rare combination of full-stack depth, mobile chops and strong product instincts. Just hire him.",
+    name: "Client",
+    role: "Tech Startup",
+  },
+  {
+    text: "Made our landing page feel like the future. Conversion went up the week after launch.",
+    name: "Client",
+    role: "E-commerce",
   },
 ];
 
 export function Testimonials() {
-  const ref = useRef<HTMLDivElement>(null);
-
+  const loop = [...quotes, ...quotes];
   return (
-    <section className="relative py-32 md:py-48">
-      <div className="container-edge mb-16">
-        <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          · 05 / Kind words
-        </p>
-        <SplitReveal
-          as="h2"
-          className="font-display text-[clamp(40px,7vw,96px)] leading-[0.95] text-foreground"
+    <section className="relative py-24 md:py-32 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12 md:mb-16"
         >
-          What clients say.
-        </SplitReveal>
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent-glow mb-4">
+            // signals_from_clients
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
+            Kind words across <span className="text-gradient">the galaxy.</span>
+          </h2>
+        </motion.div>
       </div>
 
-      <motion.div
-        ref={ref}
-        className="flex cursor-grab gap-6 overflow-x-auto px-6 pb-8 active:cursor-grabbing md:px-16 hide-scrollbar"
-        drag="x"
-        dragConstraints={{ left: -1200, right: 0 }}
-        data-cursor="drag"
-      >
-        {quotes.map((q, i) => (
-          <article
-            key={i}
-            className="flex w-[85vw] shrink-0 flex-col justify-between rounded-3xl border border-border bg-surface p-10 md:w-[520px]"
-          >
-            <p
-              className="font-serif text-3xl leading-[1.2] text-foreground md:text-4xl"
-              dangerouslySetInnerHTML={{ __html: `&ldquo;${q.quote}&rdquo;` }}
-            />
-            <div className="mt-10 flex items-center justify-between border-t border-border pt-6">
-              <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-foreground">
-                  {q.author}
-                </p>
-                <p
-                  className="mt-1 font-mono text-xs text-muted-foreground"
-                  dangerouslySetInnerHTML={{ __html: q.role }}
-                />
+      <div className="relative">
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-background to-transparent z-10" />
+        <div className="flex gap-4 md:gap-6 animate-scroll-x w-max px-4">
+          {loop.map((q, i) => (
+            <article
+              key={i}
+              className="w-[280px] sm:w-[340px] md:w-[400px] shrink-0 rounded-3xl glass-strong p-6 md:p-8"
+            >
+              <Quote className="h-6 w-6 text-accent-glow mb-4" />
+              <p className="text-foreground/90 mb-6 leading-relaxed text-sm md:text-base">
+                {q.text}
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-neon flex items-center justify-center font-display font-bold text-primary-foreground">
+                  {q.name[0]}
+                </div>
+                <div>
+                  <div className="font-medium text-sm">{q.name}</div>
+                  <div className="text-xs text-muted-foreground">{q.role}</div>
+                </div>
               </div>
-              <span className="font-mono text-xs text-muted-foreground">
-                0{i + 1}/0{quotes.length}
-              </span>
-            </div>
-          </article>
-        ))}
-      </motion.div>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

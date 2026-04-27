@@ -1,6 +1,9 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { Navbar } from "@/components/site/Navbar";
+import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
+import { CosmicBackdrop } from "@/components/site/CosmicBackdrop";
 
 function NotFoundComponent() {
   return (
@@ -29,21 +32,21 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shubham Yeljale — Software Developer · JahiratBazi" },
+      { title: "Shubham Yeljale — Full-Stack · Web · Mobile · AI Developer" },
       {
         name: "description",
         content:
-          "Software developer based in Pune, India. Crafting beautiful, performant web experiences for studios and founders.",
+          "Shubham Yeljale, full-stack developer based in Pune, India. Building production websites, mobile apps and AI-powered tools end-to-end.",
       },
       { name: "author", content: "Shubham Yeljale" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#0A0A0B" },
+      { name: "theme-color", content: "#06061a" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://api.fontshare.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
     ],
   }),
   shellComponent: RootShell,
@@ -53,7 +56,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <HeadContent />
       </head>
@@ -66,5 +69,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <CosmicBackdrop />
+      <ScrollProgressBar />
+      <Navbar />
+      <Outlet />
+    </>
+  );
 }

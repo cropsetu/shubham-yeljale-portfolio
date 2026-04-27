@@ -1,29 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
-import { Work } from "@/components/site/Work";
+import { Skills } from "@/components/site/Skills";
+import { Experience } from "@/components/site/Experience";
 import { Services } from "@/components/site/Services";
-import { Process } from "@/components/site/Process";
+import { ProjectsGrid } from "@/components/site/ProjectsGrid";
 import { Testimonials } from "@/components/site/Testimonials";
-import { Contact } from "@/components/site/Contact";
+import { ContactCream as Contact } from "@/components/site/ContactCream";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
-import { MagneticCursor } from "@/components/site/MagneticCursor";
+import { MagneticCursor as CustomCursor } from "@/components/site/MagneticCursor";
 import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Shubham Yeljale — Software Developer · JahiratBazi" },
+      { title: "Shubham Yeljale — Full-Stack · Web · Mobile · AI Developer" },
       {
         name: "description",
         content:
-          "Software developer based in Pune, India. Crafting beautiful, performant web experiences for studios and founders.",
+          "Shubham Yeljale, full-stack developer based in Pune, India. Building production websites, mobile apps and AI-powered tools end-to-end.",
       },
-      { property: "og:title", content: "Shubham Yeljale — Software Developer" },
+      { property: "og:title", content: "Shubham Yeljale — Full-Stack Developer" },
       {
         property: "og:description",
         content:
-          "Cinematic, fast, conversion-ready websites and web apps. Available for select projects in 2025–2026.",
+          "Cosmic portfolio of a full-stack web, mobile and AI developer based in Pune, India.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -33,16 +34,16 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="relative bg-background text-foreground">
+    <main className="relative z-10 text-foreground">
       <SmoothScroll />
-      <MagneticCursor />
-      <div className="grain" aria-hidden />
+      <CustomCursor />
 
       <Hero />
       <About />
-      <Work />
+      <Skills />
+      <Experience />
       <Services />
-      <Process />
+      <ProjectsGrid />
       <Testimonials />
       <Contact />
 
