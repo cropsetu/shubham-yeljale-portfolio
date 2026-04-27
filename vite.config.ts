@@ -24,6 +24,12 @@ export default defineConfig({
       "@tanstack/react-start",
     ],
   },
+  // Inline ALL deps into the SSR bundle so the resulting server.js is
+  // self-contained and works inside Vercel's serverless function (which
+  // does NOT include node_modules at runtime).
+  ssr: {
+    noExternal: true,
+  },
   server: {
     port: 8080,
     host: true,
