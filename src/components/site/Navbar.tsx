@@ -41,7 +41,7 @@ export function Navbar() {
             aria-label="typingCodeAI home"
             className="inline-flex items-center"
           >
-            <Logo size={32} />
+            <Logo size={38} wordmarkClassName="text-lg md:text-xl" />
           </a>
 
           <div className="hidden md:flex items-center gap-5 lg:gap-6">

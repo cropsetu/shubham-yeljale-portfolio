@@ -6,6 +6,7 @@ import { Services } from "@/components/site/Services";
 import { ProjectsGrid } from "@/components/site/ProjectsGrid";
 import { Pricing } from "@/components/site/Pricing";
 import { FAQ } from "@/components/site/FAQ";
+import { TechMarquee } from "@/components/site/TechMarquee";
 import { Testimonials } from "@/components/site/Testimonials";
 import { ContactCream as Contact } from "@/components/site/ContactCream";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
@@ -48,6 +49,7 @@ function Index() {
       <CustomCursor />
 
       <Hero />
+      <TechMarquee />
       <Services />
       <Experience />
       <About />
