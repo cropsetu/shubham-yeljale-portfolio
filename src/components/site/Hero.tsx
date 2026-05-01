@@ -87,23 +87,17 @@ export function Hero() {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            {/* Brand row — logo + wordmark */}
+            {/* Brand mark — icon only, no wordmark */}
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}
               animate={mounted ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="flex items-center gap-3.5 justify-center lg:justify-start mb-6"
+              className="flex justify-center lg:justify-start mb-7"
             >
-              <LogoMark size={56} />
-              <span className="font-display text-2xl sm:text-3xl font-bold tracking-tight">
-                <span className="text-foreground/90">typing</span>
-                <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  Code
-                </span>
-                <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
-                  AI
-                </span>
-              </span>
+              <div className="relative">
+                <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-blue-500/30 via-cyan-400/20 to-amber-400/20 blur-2xl scale-150" />
+                <LogoMark size={72} />
+              </div>
             </motion.div>
 
             {/* Trust badge */}
