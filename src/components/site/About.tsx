@@ -56,13 +56,19 @@ export function About() {
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Why Choose{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Shubham?
+            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-300 bg-clip-text text-transparent">
+              typingCode
             </span>
+            <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
+              AI
+            </span>
+            <span className="text-foreground">?</span>
           </h2>
           <p className="text-base sm:text-lg text-foreground/65 max-w-2xl mx-auto">
-            A one-person studio with agency-level output — without agency-level overhead, agency-level
-            timelines, or agency-level invoices.
+            A boutique dev studio founded by{" "}
+            <span className="text-amber-200 font-semibold">Shubham Yeljale</span> —
+            agency-level output without agency-level overhead, timelines, or
+            invoices.
           </p>
         </motion.div>
 

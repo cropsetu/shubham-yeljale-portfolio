@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Logo } from "@/components/site/Logo";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -35,8 +36,12 @@ export function Navbar() {
             scrolled ? "glass-strong" : "glass"
           }`}
         >
-          <a href="#hero" className="font-display text-base md:text-lg font-bold text-gradient">
-            ◆ SHUBHAM
+          <a
+            href="#hero"
+            aria-label="typingCodeAI home"
+            className="inline-flex items-center"
+          >
+            <Logo size={32} />
           </a>
 
           <div className="hidden md:flex items-center gap-5 lg:gap-6">

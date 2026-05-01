@@ -32,13 +32,15 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shubham Yeljale — Full-Stack · Web · Mobile · AI Developer" },
+      { title: "typingCodeAI — Websites, Apps & AI Tools, Shipped in Weeks" },
       {
         name: "description",
         content:
-          "Shubham Yeljale, full-stack developer based in Pune, India. Building production websites, mobile apps and AI-powered tools end-to-end.",
+          "typingCodeAI builds production websites, mobile apps and AI-powered tools end-to-end. Founded by Shubham Yeljale, Pune, India. Free 48-hour mockup, pay only on delivery.",
       },
-      { name: "author", content: "Shubham Yeljale" },
+      { name: "author", content: "typingCodeAI · Shubham Yeljale" },
+      { name: "application-name", content: "typingCodeAI" },
+      { property: "og:site_name", content: "typingCodeAI" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#06061a" },

@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   MessageCircle,
 } from "lucide-react";
+import { LogoMark } from "@/components/site/Logo";
 
 const PHONE = "9970014674";
 const WHATSAPP = `https://wa.me/91${PHONE}?text=Hi%20Shubham%2C%20I%27d%20like%20a%20free%20mockup%20for%20my%20project.`;
@@ -120,6 +121,19 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="max-w-5xl mx-auto text-center"
         >
+          {/* Brand mark — big logo above the trust badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={mounted ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="flex justify-center mb-6"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-blue-500/30 via-cyan-400/20 to-amber-400/20 blur-2xl scale-150" />
+              <LogoMark size={84} />
+            </div>
+          </motion.div>
+
           {/* Trust badge */}
           <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full glass border border-amber-300/30 text-amber-100 text-xs sm:text-sm font-medium mb-8 backdrop-blur-sm shadow-[0_0_30px_rgba(251,191,36,0.15)]">
             <span className="relative flex items-center justify-center">
@@ -139,26 +153,38 @@ export function Hero() {
 
           {/* Headline */}
           <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05] tracking-tight">
-            Beautiful{" "}
+            Welcome to{" "}
+            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-300 bg-clip-text text-transparent">
+              typingCode
+            </span>
             <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
-              websites &amp; apps
+              AI
             </span>
             <br />
-            shipped in weeks, not months.
+            <span className="text-foreground/90">
+              where ideas become live products.
+            </span>
           </h1>
 
           {/* Subhead */}
           <p className="text-base sm:text-lg lg:text-xl text-foreground/75 mb-10 max-w-3xl mx-auto leading-relaxed">
-            I&apos;m Shubham — a full-stack developer in Pune turning ideas into
-            production-ready{" "}
+            We design, build and ship custom{" "}
             <span className="text-blue-300 font-semibold">websites</span>,{" "}
             <span className="text-cyan-300 font-semibold">mobile apps</span> and{" "}
             <span className="bg-gradient-to-r from-amber-300 to-yellow-400 bg-clip-text text-transparent font-semibold">
-              AI tools
-            </span>
-            .
+              AI-powered tools
+            </span>{" "}
+            — end to end, in weeks, not months.
             <br className="hidden sm:block" />
-            Free mockup in 48 hours. Pay only when each milestone ships.
+            Free mockup in 48 hours · pay only when each milestone ships · founded
+            by{" "}
+            <a
+              href="#about"
+              className="underline decoration-amber-400/40 underline-offset-4 hover:text-amber-200"
+            >
+              Shubham Yeljale
+            </a>{" "}
+            in Pune, India.
           </p>
 
           {/* Dual CTAs */}

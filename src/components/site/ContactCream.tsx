@@ -3,7 +3,8 @@ import { Github, Linkedin, Mail, Phone, MessageCircle, Send, MapPin } from "luci
 import { useState } from "react";
 import { toast } from "sonner";
 
-const NAME = "Shubham Yeljale";
+const BRAND = "typingCodeAI";
+const FOUNDER = "Shubham Yeljale";
 const EMAIL = "shubhamyeljalebcs@gmail.com";
 const PHONE = "9970014674";
 const WHATSAPP = `https://wa.me/91${PHONE}`;
@@ -162,11 +163,15 @@ export function ContactCream() {
               // make_contact
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-6xl font-bold leading-tight mb-6">
-              Let&apos;s build <span className="text-gradient">something cosmic.</span>
+              Let&apos;s build{" "}
+              <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-amber-300 bg-clip-text text-transparent">
+                something cosmic.
+              </span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-md">
-              Got an ambitious idea, a stalled project, or just want to talk full-stack & AI?
-              Drop me an enquiry — I usually reply within 24 hours.
+              Got an ambitious idea, a stalled project, or want to talk full-stack
+              &amp; AI? Send {BRAND} an enquiry — Shubham personally replies within
+              24 hours.
             </p>
 
             <div className="space-y-3 mb-8">
@@ -438,7 +443,15 @@ export function ContactCream() {
         </div>
 
         <footer className="mt-24 md:mt-32 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} {NAME} · Crafted in deep space.</div>
+          <div>
+            © {new Date().getFullYear()}{" "}
+            <span className="font-display font-semibold">
+              <span className="text-foreground/90">typing</span>
+              <span className="text-blue-300">Code</span>
+              <span className="text-amber-300">AI</span>
+            </span>{" "}
+            · Founded by {FOUNDER} · Pune, India.
+          </div>
           <a href="#hero" className="hover:text-accent-glow transition-colors">
             Back to top ↑
           </a>

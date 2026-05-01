@@ -17,23 +17,24 @@ export const Route = createFileRoute("/")({
     meta: [
       {
         title:
-          "Shubham Yeljale — Custom Websites & Apps Built in 3 Weeks · Pune, India",
+          "typingCodeAI — Custom Websites, Apps & AI Tools, Shipped in Weeks",
       },
       {
         name: "description",
         content:
-          "Get a custom website, mobile app or AI tool built and launched in under 3 weeks. Free mockup in 48 hours, no upfront payment. Built by Shubham Yeljale, full-stack developer in Pune.",
+          "typingCodeAI ships custom websites, mobile apps and AI tools in under 3 weeks. Free mockup in 48 hours, no upfront payment. Built by Shubham Yeljale, Pune, India.",
       },
       {
         property: "og:title",
         content:
-          "Shubham Yeljale — Websites & Apps That Grow Your Business · Free Mockup in 48hrs",
+          "typingCodeAI — Websites & Apps That Grow Your Business · Free Mockup in 48hrs",
       },
       {
         property: "og:description",
         content:
-          "Custom websites, mobile apps & AI tools — idea to launch in under 3 weeks. Free mockup, no upfront payment. React + Next.js + React Native.",
+          "Custom websites, mobile apps & AI tools — idea to launch in weeks. Free mockup, no upfront payment. React, Next.js, React Native, OpenAI / Claude / Gemini.",
       },
+      { property: "og:site_name", content: "typingCodeAI" },
       { property: "og:type", content: "website" },
     ],
   }),
