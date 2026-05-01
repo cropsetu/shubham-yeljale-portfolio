@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { LogoMark } from "@/components/site/Logo";
+import { Logo } from "@/components/site/Logo";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -41,7 +41,7 @@ export function Navbar() {
             aria-label="typingCodeAI home"
             className="inline-flex items-center"
           >
-            <LogoMark size={44} />
+            <Logo size={40} wordmarkClassName="text-lg md:text-xl" />
           </a>
 
           <div className="hidden md:flex items-center gap-5 lg:gap-6">

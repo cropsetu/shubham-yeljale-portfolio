@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   MessageCircle,
 } from "lucide-react";
-import { LogoMark } from "@/components/site/Logo";
 import { CodeTyper } from "@/components/site/CodeTyper";
 
 const PHONE = "9970014674";
@@ -87,19 +86,6 @@ export function Hero() {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            {/* Brand mark — icon only, no wordmark */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={mounted ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="flex justify-center lg:justify-start mb-7"
-            >
-              <div className="relative">
-                <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-blue-500/30 via-cyan-400/20 to-amber-400/20 blur-2xl scale-150" />
-                <LogoMark size={72} />
-              </div>
-            </motion.div>
-
             {/* Trust badge */}
             <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full glass border border-amber-300/30 text-amber-100 text-xs sm:text-sm font-medium mb-7 backdrop-blur-sm shadow-[0_0_30px_rgba(251,191,36,0.15)]">
               <span className="relative flex items-center justify-center">
@@ -252,6 +238,21 @@ export function Hero() {
                   "radial-gradient(60% 60% at 50% 50%, hsl(220 100% 55% / 0.45), transparent 70%)",
               }}
             />
+
+            {/* Code-style brand line — reads like an SDK install */}
+            <div className="mb-3 flex items-center justify-center gap-2 font-mono text-[11px] sm:text-xs text-foreground/55">
+              <span className="text-emerald-400">$</span>
+              <span>npm install</span>
+              <span className="font-semibold tracking-tight">
+                <span className="text-foreground/85">typing</span>
+                <span className="text-blue-300">Code</span>
+                <span className="text-amber-300">AI</span>
+              </span>
+              <span className="ml-1 inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-500/25 px-2 py-0.5 text-[10px] text-emerald-300">
+                <span className="h-1 w-1 rounded-full bg-emerald-400 animate-pulse" />
+                v1.0.0
+              </span>
+            </div>
 
             <CodeTyper className="rounded-2xl" />
 

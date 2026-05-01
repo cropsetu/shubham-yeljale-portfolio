@@ -112,8 +112,14 @@ export function CodeTyper({ className = "" }: { className?: string }) {
         <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
         <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
         <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-        <div className="flex-1 text-center text-[11px] font-mono text-foreground/40 truncate">
-          ~/typing-code-ai · {snippet.filename}
+        <div className="flex-1 flex items-center justify-center gap-2 text-[11px] font-mono truncate">
+          <span className="font-semibold tracking-tight">
+            <span className="text-foreground/85">typing</span>
+            <span className="text-blue-300">Code</span>
+            <span className="text-amber-300">AI</span>
+          </span>
+          <span className="text-foreground/30">/</span>
+          <span className="text-foreground/55">{snippet.filename}</span>
         </div>
         <span className="text-[10px] font-mono text-foreground/30 uppercase">
           {snippet.lang}
